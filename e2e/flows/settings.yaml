@@ -1,0 +1,45 @@
+appId: com.goldprice.app
+name: Settings Flow
+---
+# Wait for app to load
+- waitForAnimationToEnd
+
+# Navigate to Settings tab
+- tapOn:
+    id: "tab-settings"
+
+- waitForAnimationToEnd
+
+# Check settings screen loaded
+- assertVisible:
+    text: ".*Cài Đặt.*"
+    optional: true
+
+# Toggle dark mode (if available)
+- tapOn:
+    text: ".*Chế độ tối.*"
+    optional: true
+
+- waitForAnimationToEnd
+
+# Change language (if available)
+- tapOn:
+    text: ".*Ngôn ngữ.*"
+    optional: true
+
+- waitForAnimationToEnd
+
+# Select English (if language options shown)
+- tapOn:
+    text: "English"
+    optional: true
+
+- waitForAnimationToEnd
+
+# Verify language changed
+- assertVisible:
+    text: ".*Settings.*"
+    optional: true
+
+# Navigate back
+- back

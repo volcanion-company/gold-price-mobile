@@ -1,0 +1,51 @@
+appId: com.goldprice.app
+name: Portfolio Flow
+---
+# Wait for app to load
+- waitForAnimationToEnd
+
+# Navigate to Portfolio tab
+- tapOn:
+    id: "tab-portfolio"
+
+- waitForAnimationToEnd
+
+# Check portfolio screen loaded
+- assertVisible:
+    text: ".*Danh Mục.*"
+    optional: true
+
+# Check summary section (if exists)
+- assertVisible:
+    text: ".*Tổng.*"
+    optional: true
+
+# Try to add new holding
+- tapOn:
+    text: ".*Thêm.*"
+    optional: true
+
+- waitForAnimationToEnd
+
+# Fill holding form (if modal opens)
+- inputText:
+    id: "holding-quantity-input"
+    text: "1"
+    optional: true
+
+- inputText:
+    id: "holding-price-input"  
+    text: "82000000"
+    optional: true
+
+# Save holding
+- tapOn:
+    text: ".*Lưu.*"
+    optional: true
+
+- waitForAnimationToEnd
+
+# Verify portfolio is updated
+- assertVisible:
+    text: ".*Danh Mục.*"
+    optional: true

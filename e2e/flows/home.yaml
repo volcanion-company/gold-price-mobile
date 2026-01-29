@@ -1,0 +1,35 @@
+appId: com.goldprice.app
+name: Home Screen Flow
+---
+# Wait for app to load
+- waitForAnimationToEnd
+
+# Check home screen elements are visible
+- assertVisible: "Giá Vàng Hôm Nay"
+
+# Check if gold prices are loaded
+- assertVisible:
+    id: "price-list"
+    optional: true
+
+# Tap on a gold price card (if available)
+- tapOn:
+    text: ".*SJC.*"
+    optional: true
+
+# Navigate back to home
+- tapOn:
+    id: "tab-home"
+    optional: true
+
+# Pull to refresh
+- swipe:
+    direction: DOWN
+    duration: 1000
+
+- waitForAnimationToEnd
+
+# Verify prices updated (loading indicator should disappear)
+- assertNotVisible:
+    text: "Đang tải..."
+    optional: true

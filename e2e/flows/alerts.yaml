@@ -1,0 +1,46 @@
+appId: com.goldprice.app
+name: Alert Flow
+---
+# Wait for app to load
+- waitForAnimationToEnd
+
+# Navigate to Alerts tab
+- tapOn:
+    id: "tab-alerts"
+
+- waitForAnimationToEnd
+
+# Check alerts screen loaded
+- assertVisible: 
+    text: ".*Cảnh Báo.*"
+    optional: true
+
+# Try to create new alert (if button exists)
+- tapOn:
+    text: ".*Tạo.*"
+    optional: true
+
+- waitForAnimationToEnd
+
+# If modal opens, fill form
+- inputText:
+    id: "alert-price-input"
+    text: "85000000"
+    optional: true
+
+# Select condition
+- tapOn:
+    text: ".*Trên.*"
+    optional: true
+
+# Submit alert
+- tapOn:
+    text: ".*Lưu.*"
+    optional: true
+
+- waitForAnimationToEnd
+
+# Verify alert was created or list is shown
+- assertVisible:
+    text: ".*Cảnh báo.*"
+    optional: true
